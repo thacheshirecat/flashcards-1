@@ -31,5 +31,41 @@ $(document).ready(function()
     {
       newGame.checkAnswer(userInput)
     }, 7000);
+    setTimeout(function()
+    {
+      $("#next-card-button").show();
+      newGame.turnCount += 1;
+      $("#scorespan").text(newGame.score);
+    }, 7500);
   });
+
+  $("button#next-card").click(function(event)
+  {
+    event.preventDefault();
+    $("#answer").hide();
+    $("#next-card-button").hide();
+
+    newGame.setQuestion();
+    setTimeout(function()
+    {
+      newGame.getAnswer();
+    }, 6900);
+    setTimeout(function()
+    {
+      newGame.checkAnswer(userInput)
+    }, 7000);
+    setTimeout(function()
+    {
+      newGame.turnCount += 1;
+      $("#scorespan").text(newGame.score);
+    }, 7500);
+    if((newGame.maxTurns - 1) > newGame.turnCount)
+    {
+      setTimeout(function()
+      {
+        $("#next-card-button").show()
+      }, 7500);
+    }
+  });
+
 });

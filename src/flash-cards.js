@@ -3,22 +3,22 @@ import $ from 'jquery';
 
 const Question = [
   "What does JS stand for?",
-  "Second Question",
-  "Third Question"
+  "How do we define variables in Node that may change?",
+  "How do we define variables in Node that will not change?"
 ];
 const Answer = [
   "JavaScript",
-  "Second Answer",
-  "Third Answer"
+  "let",
+  "const"
 ];
 
 export class Flashcards
 {
-  constructor(question, answer, falseAnswer, output, turnCount = 0, score = 0)
+  constructor(question, answer, maxTurns = 3, output, turnCount = 0, score = 0)
   {
     this.question = question;
     this.answer = answer;
-    this.falseAnswer = falseAnswer;
+    this.maxTurns = maxTurns;
     this.output = output;
     this.turnCount = turnCount;
     this.score = score;
@@ -28,7 +28,6 @@ export class Flashcards
     let i = this.turnCount;
     this.question = Question[i];
     this.answer = Answer[i];
-    this.falseAnswer = Answer[i+1];
     $("#question").text(this.question);
   }
   getAnswer()
@@ -42,6 +41,7 @@ export class Flashcards
       this.score+=1;
       this.output = "Correct!";
       $("#question").text(this.answer);
+      $("#answer").show();
       $("#answer").text(this.output);
     }
     else
